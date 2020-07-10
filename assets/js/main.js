@@ -50,7 +50,7 @@ const hideAnswer = () => document.getElementById('answer').parentNode.classList.
 
 // Read JSON File
 const getJsonQuotes = lang => {
-    let file = '/assets/js/data_' + lang + '.json';
+    let file = 'assets/js/data_' + lang + '.json';
     let xhr = new XMLHttpRequest();
     xhr.overrideMimeType("application/json");
     xhr.open('GET', file, true);
