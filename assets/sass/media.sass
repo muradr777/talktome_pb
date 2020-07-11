@@ -7,16 +7,20 @@
       @content
 
   @else if $class == sm
-    @media (min-width: 768px)
+    @media (min-width: 576px)
       @content
 
   @else if $class == md
-    @media (min-width: 992px)
+    @media (min-width: 768px)
       @content
 
   @else if $class == lg
-    @media (min-width: 1200px)
+    @media (min-width: 992px)
       @content
+
+  @else if $class == xl
+    @media (min-width: 1200px)
+      @conten
 
   @else if $class == rt
     @media (min-width: 2880px)
