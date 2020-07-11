@@ -1,4 +1,15 @@
 'use strict';
+
+const loc_state = {
+    'lang': 'en',
+    'mute': false,
+    'typing': false,
+    'soundOn': false,
+    'animationRunning': false,
+    'quotes': []
+};
+
+let lang = 'en';
 let mute = false;
 let typing = false;
 let soundOn = false;
@@ -49,8 +60,8 @@ const showAnswer = (array, i = 0) => {
 const hideAnswer = () => document.getElementById('answer').parentNode.classList.remove('shown');
 
 // Read JSON File
-const getJsonQuotes = lang => {
-    let file = 'assets/js/data_' + lang + '.json';
+const getJsonQuotes = () => {
+    let file = 'assets/js/data_' + getLang() + '.json';
     let xhr = new XMLHttpRequest();
     xhr.overrideMimeType("application/json");
     xhr.open('GET', file, true);
@@ -75,13 +86,26 @@ const swapVolBtns = (show, hide) => {
     hide.classList.remove('shown');
 };
 
+function playVideoSmoothly() {
+    player.setVolume(0);
+    player.playVideo();
+    increaseVolumeSmoothly(1);
+}
+
+function increaseVolumeSmoothly(i) {
+    player.setVolume(i);
+    if(i < 80) {
+        setTimeout(() => {
+            increaseVolumeSmoothly(++i);
+        }, 100);
+    } else return ;
+}
 
 mindForm.addEventListener('input', () => {
     if(inputEmpty()) {
         pullFormBack(mindForm.parentNode)    
         hideAnswer();
     }
-    // TODO: Sound starting on input when sound off
     if(soundOn && !mute)
         document.getElementById('volDown').classList.add('shown');
     
@@ -92,7 +116,7 @@ mindForm.addEventListener('input', () => {
         typing = true;
         
         if(!mute) {
-            player.playVideo();
+            playVideoSmoothly();
             soundOn = true;
         }
     }
@@ -134,6 +158,28 @@ volDown.addEventListener('click', () => {
     player.stopVideo();
     mute = true;
 });
+
+// Langs
+document.querySelectorAll('.langs-btn').forEach(el => {
+    el.addEventListener('click', e => {
+        e.preventDefault();
+        setLang(e.target.dataset.lang);
+        getJsonQuotes();
+        document.querySelector('.lang-overlay').style.opacity = 0;
+        setTimeout(() => {
+            document.querySelector('.lang-overlay').parentNode.removeChild(document.querySelector('.lang-overlay'));    
+        }, 1000);
+        
+    })
+});
+
+function getLang() {
+    return loc_state.lang;
+}
+function setLang(val) {
+    loc_state.lang = val;
+    return true;
+}
 
 // * YT Player
 var tag = document.createElement('script');
