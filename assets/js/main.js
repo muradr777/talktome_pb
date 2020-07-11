@@ -6,7 +6,8 @@ const loc_state = {
     'typing': false,
     'soundOn': false,
     'animationRunning': false,
-    'quotes': []
+    'quotes': [],
+    'langs': {}
 };
 
 let lang = 'en';
@@ -67,7 +68,7 @@ const getJsonQuotes = () => {
     xhr.open('GET', file, true);
     xhr.onreadystatechange = function() {
         if(this.readyState == 4 && this.status == 200) {
-            quotes = JSON.parse(this.responseText);
+            loc_state.quotes = JSON.parse(this.responseText);
         }
     }
     xhr.send(null);
@@ -77,7 +78,7 @@ const getRandomInt = max => Math.floor(Math.random() * Math.floor(max));
 
 
 const getRandomQuote = () => {
-    let data = quotes;
+    let data = loc_state.quotes;
     return data[getRandomInt(data.length)];
 };
 
@@ -127,13 +128,16 @@ mindForm.addEventListener('submit', e => {
     
     e.preventDefault();
     
+    let langs = loc_state.langs;
+    
+    
     if(animationRunning) {
-        alertExeption("Do not rush ...");
+        alertExeption(langs['dont_rush']);
         return;
     }
 
     if(inputEmpty()) {
-        alertExeption("You forgot to type in your message ...");
+        alertExeption(langs['empty_message']);
         return;
     }
     
@@ -163,12 +167,19 @@ volDown.addEventListener('click', () => {
 document.querySelectorAll('.langs-btn').forEach(el => {
     el.addEventListener('click', e => {
         e.preventDefault();
-        setLang(e.target.dataset.lang);
+        setLang(e.target.dataset.getLang);
         getJsonQuotes();
-        document.querySelector('.lang-overlay').style.opacity = 0;
+        getJsonLangs(e.target.dataset.getLang);
+        document.querySelector('.langs-wrap').style.opacity = 0;
         setTimeout(() => {
-            document.querySelector('.lang-overlay').parentNode.removeChild(document.querySelector('.lang-overlay'));    
-        }, 1000);
+            changeSiteLangs();
+            setTimeout(() => {
+                document.querySelector('.lang-overlay').style.opacity = 0;
+                setTimeout(() => {
+                    document.querySelector('.lang-overlay').parentNode.removeChild(document.querySelector('.lang-overlay'));
+                }, 1000);
+            }, 1000);
+        }, 100);
         
     })
 });
@@ -180,6 +191,25 @@ function setLang(val) {
     loc_state.lang = val;
     return true;
 }
+
+function changeSiteLangs() {
+    document.querySelectorAll('.lang-text').forEach(el => {
+        el.innerHTML = loc_state.langs[el.dataset.lang];
+    });
+}
+
+function getJsonLangs(lang = 'en') {
+    let file = 'assets/js/site_langs.json';
+    let xhr = new XMLHttpRequest();
+    xhr.overrideMimeType("application/json");
+    xhr.open('GET', file, true);
+    xhr.onreadystatechange = function() {
+        if(this.readyState == 4 && this.status == 200) {
+            loc_state.langs = JSON.parse(this.responseText)[lang];
+        }
+    }
+    xhr.send(null);
+};
 
 // * YT Player
 var tag = document.createElement('script');

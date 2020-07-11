@@ -1,0 +1,15 @@
+{
+    "en": {
+        "what_you_think": "What're you thinking about?",
+        "headphones_recommended": "Headphones recommended",
+        "dont_rush": "Do not rush ...",
+        "empty_message": "You forgot to type in your message ..."
+        
+    },
+    "ru": {
+        "what_you_think": "О чем вы думаете?",
+        "headphones_recommended": "Рекомендуем надеть наушники",
+        "dont_rush": "Не торопитесь ...",
+        "empty_message": "Введите пожалуйста ваше сообщение ..."
+    }
+}
