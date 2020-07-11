@@ -27,7 +27,12 @@
         <form id="mindForm">
             <div class="form-group">
                 <label class="lang-text" data-lang="what_you_think" for="message">What're you thinking about?</label>
-                <input id="message" name="message" type="text" placeholder="Type your message here..." autocomplete="off"/>
+                <div class="input-wrap">
+                    <input id="message" name="message" type="text" placeholder="Type your message here..." autocomplete="off"/>
+                    <button class="submit-btn">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
                 <span id="alert" class="alert"></span>
             </div>
         </form>

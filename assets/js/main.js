@@ -232,5 +232,6 @@ function onYouTubeIframeAPIReady() {
 }
 
 window.addEventListener('load', () => {
-    getJsonQuotes('en');
+    getJsonQuotes(loc_state.lang);
+    getJsonLangs(loc_state.lang)
 });

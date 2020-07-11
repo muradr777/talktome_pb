@@ -33,7 +33,7 @@ button
 a
     color: #4457eb
 
-input:focus
+input:focus, button:focus
     outline: 0
 
 
@@ -91,16 +91,27 @@ input:focus
     >label
         display: block
         margin-bottom: 10px
-    >input
+    .input-wrap
+        position: relative
+    input
         width: 100%
         border: none
-        padding: 10px 0
         font-family: inherit
+        padding: 10px 30px 10px 0
         background-color: transparent
         border-bottom: 1px solid #eaeaea
         transition: border-color .3s ease-in-out
         &:focus
             border-bottom-color: #444
+    .submit-btn
+        right: 0
+        top: 50%
+        border: none
+        color: #c1c1c1
+        font-size: 18px
+        position: absolute
+        transform: translateY(-48%)
+        background-color: transparent
     
 
 
