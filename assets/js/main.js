@@ -52,7 +52,7 @@ const showAnswer = (array, i = 0) => {
                     pullFormBack(mindForm.parentNode);
                 }
             }, 2000);
-        }, 2000);
+        }, 4000);
     }, 2000);
 
     return;
