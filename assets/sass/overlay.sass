@@ -1,0 +1,43 @@
+.lang-overlay
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    position: absolute
+    background-color: #fafafa
+    transition: opacity 1s
+    .langs-wrap
+        top: 45%
+        left: 50%
+        position: absolute
+        transition: opacity 1s
+        transform: translate(-50%, -50%)
+        @include mq(xs)
+            width: 100%
+            text-align: center
+        .lang-title
+            color: #414141
+            font-family: $qs
+            font-weight: 400
+            text-align: center
+        .langs-btn
+            border: none
+            color: #414141
+            font-size: 26px 
+            font-family: $qs
+            padding: 10px 30px
+            position: relative
+            text-transform: uppercase
+            background-color: transparent
+            transition: background-color .6s
+            &:not(:nth-last-child(1)):after
+                top: 0
+                right: -3px
+                content: ''
+                width: 1px
+                height: 100%
+                position: absolute
+                background-color: #caaca
+            &:hover, &:focus
+                outline: none
+                background-color: #eaeaea

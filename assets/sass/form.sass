@@ -1,0 +1,80 @@
+.form-wrap
+    width: 500px
+    position: relative
+    background-color: #fafafa
+    padding: 2.2rem 2rem 1.8rem
+    margin: 20vh auto
+    border-radius: 3px
+    border: 1px solid #ddd
+    transition: border-color .3s ease-in-out, transform 2s
+    @include mq(xs)
+        width: 100%
+        margin: auto
+    &:hover
+        border-color: #444
+
+.form-group
+   
+    >label
+        display: block
+        margin-bottom: 10px
+    .input-wrap
+        position: relative
+    input
+        width: 100%
+        border: none
+        font-family: inherit
+        padding: 10px 30px 10px 0
+        background-color: transparent
+        border-bottom: 1px solid #eaeaea
+        transition: border-color .3s ease-in-out
+        &:focus
+            border-bottom-color: #444
+    .submit-btn
+        right: 0
+        top: 50%
+        border: none
+        color: #c1c1c1
+        font-size: 18px
+        position: absolute
+        transform: translateY(-48%)
+        background-color: transparent
+
+.alerts 
+    width: 500px
+    margin: auto
+    padding: 15px   
+    font-size: 16px
+    &.success 
+        color: #11a111
+    &.error
+        color: #e34c44
+
+.changePosition
+    transform: translateY(70%)
+
+.alert
+    opacity: 0
+    height: 20px
+    display: block
+    color: #eb633d
+    font-size: 12px
+    margin-top: 5px
+    letter-spacing: 2px
+    transition: transform 2s, opacity 1s ease-in-out
+    transform: translateY(20px)
+    @include mq(xs)
+        font-size: 10px
+    &.shown
+        opacity: 1
+        transform: translateY(0)
+
+.user-headset
+    left: 50%
+    width: 100%
+    bottom: -20%
+    text-align: center
+    transform: translate(-50%, -50%)
+    color: #c4c4c4
+    font-size: 12px
+    position: absolute

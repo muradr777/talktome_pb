@@ -1,0 +1,19 @@
+.answer-wrap
+    opacity: 0
+    top: 25%
+    left: 50%
+    font-size: 24px
+    font-weight: 700
+    position: absolute
+    transform: translate(-50%, -50%)
+    transition: opacity 2s ease-in-out
+    @include mq(xs)
+        top: 18%
+        width: 100%
+        padding: 0 10px
+        font-size: 18px
+        text-align: center
+    &.shown
+        opacity: 1
+    span
+        letter-spacing: 2px
