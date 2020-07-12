@@ -6,17 +6,29 @@ body
     padding: 0
     font-weight: 400
     font-family: $qs
+    &:before, &:after
+        @include mq(sm)
+            content: ''
+            width: 0
+            height: 0
+            opacity: .5
+            z-index: -1
     &:before
-        content: ''
-        top: 0
-        left: 0
-        width: 100%
-        height: 100%
-        z-index: -1
-        opacity: .5
-        position: absolute
-        background-size: cover
-        background-image: url('/assets/img/Liquid-Cheese.svg')   
+        @include mq(sm)
+            left: 0
+            bottom: 0
+            position: absolute
+            border-left: 15em solid #f1f1f1
+            border-top: 15em solid transparent
+            border-bottom: 15em solid transparent
+    &:after
+        @include mq(sm)
+            top: 0
+            right: 0
+            position: absolute
+            border-right: 15em solid #f1f1f1
+            border-top: 15em solid transparent
+            border-bottom: 15em solid transparent
 
 button
     cursor: pointer
