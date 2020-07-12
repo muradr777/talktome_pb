@@ -4,7 +4,7 @@ const loc_state = {
     'lang': 'en',
     'mute': false,
     'typing': false,
-    'soundOn': false,
+    'playing': false,
     'animationRunning': false,
     'quotes': [],
     'langs': {},
