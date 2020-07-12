@@ -6,14 +6,16 @@ document.querySelectorAll('.langs-btn').forEach(el => {
         getJsonLangs(e.target.dataset.getLang);
         document.querySelector('.langs-wrap').style.opacity = 0;
         setTimeout(() => {
-            changeSiteLangs();
+            let langsReady = changeSiteLangs();
             setTimeout(() => {
+                if(!langsReady)
+                    changeSiteLangs();
                 document.querySelector('.lang-overlay').style.opacity = 0;
                 setTimeout(() => {
                     document.querySelector('.lang-overlay').parentNode.removeChild(document.querySelector('.lang-overlay'));
                 }, 1000);
             }, 1000);
-        }, 100);
+        }, 500);
         
     })
 });
@@ -27,6 +29,8 @@ function setLang(val) {
 }
 
 function changeSiteLangs() {
+    if(loc_state.langs == undefined)
+        return false;   
     document.querySelectorAll('.lang-text').forEach(el => {
         el.innerHTML = loc_state.langs[el.dataset.lang];
     });
