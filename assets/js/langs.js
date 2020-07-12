@@ -12,6 +12,7 @@ document.querySelectorAll('.langs-btn').forEach(el => {
                     changeSiteLangs();
                 document.querySelector('.lang-overlay').style.opacity = 0;
                 setTimeout(() => {
+                    changeSiteLangs();
                     document.querySelector('.lang-overlay').parentNode.removeChild(document.querySelector('.lang-overlay'));
                 }, 1000);
             }, 1000);
